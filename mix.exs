@@ -23,7 +23,8 @@ defmodule ExGhost.MixProject do
     [
       {:apex, "~> 1.2"},
       {:inflex, "~> 1.9"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:dialyxir, "~> 0.5", only: [:dev]}
     ]
   end
 end

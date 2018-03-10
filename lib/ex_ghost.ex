@@ -1,5 +1,8 @@
 defmodule ExGhost do
+  # https://elixirforum.com/t/elixir-macros-easy-to-understand-painful-to-implement/3327/5
   require ExGhost.Model
+  alias ExGhost.Model.{Post}
+
   use Application
 
   def start(_type, _args) do
@@ -15,7 +18,8 @@ defmodule ExGhost do
     :ok
   end
 
-  @spec posts() :: [ExGhost.Model.Posts]
+  @spec posts() :: [Post.t()]
   def posts() do
+    [%Post{}]
   end
 end

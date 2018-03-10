@@ -11,15 +11,16 @@ defmodule ExGhost.Model do
         {String.to_atom(k), nil}
       end)
 
-    module_name =
+    module_atom =
       Inflex.singularize(k)
       |> String.capitalize()
       |> (&"#{__MODULE__}.#{&1}").()
       |> String.to_atom()
 
     quote do
-      defmodule unquote(module_name) do
+      defmodule unquote(module_atom) do
         defstruct unquote(fields)
+        @type t :: %unquote(module_atom){}
       end
     end
     |> Code.eval_quoted()
