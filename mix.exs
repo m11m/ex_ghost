@@ -22,6 +22,7 @@ defmodule ExGhost.MixProject do
   defp deps do
     [
       {:apex, "~> 1.2"},
+      {:inflex, "~> 1.9"},
       {:poison, "~> 3.1"}
     ]
   end

@@ -11,8 +11,14 @@ defmodule ExGhost.Model do
         {String.to_atom(k), nil}
       end)
 
+    module_name =
+      Inflex.singularize(k)
+      |> String.capitalize()
+      |> (&"#{__MODULE__}.#{&1}").()
+      |> String.to_atom()
+
     quote do
-      defmodule unquote(String.to_atom("#{__MODULE__}.#{String.capitalize(k)}")) do
+      defmodule unquote(module_name) do
         defstruct unquote(fields)
       end
     end
