@@ -1,18 +1,21 @@
 defmodule ExGhost do
-  @moduledoc """
-  Documentation for ExGhost.
-  """
+  require ExGhost.Model
+  use Application
 
-  @doc """
-  Hello world.
+  def start(_type, _args) do
+    ExGhost.Supervisor.start_link()
+  end
 
-  ## Examples
+  @spec configure(Keyword.t()) :: :ok
+  def configure(kwlist) do
+    Enum.each(kwlist, fn {k, v} ->
+      Application.put_env(:ex_ghost, k, v)
+    end)
 
-      iex> ExGhost.hello
-      :world
+    :ok
+  end
 
-  """
-  def hello do
-    :world
+  @spec posts() :: [ExGhost.Model.Posts]
+  def posts() do
   end
 end
